@@ -1,5 +1,4 @@
-const persons = [
-  {
+const persons = [{
     id: 1,
     firstName: 'Mario',
     lastName: 'Rossi',
@@ -20,9 +19,18 @@ const persons = [
 ];
 
 function fetchPersonById(id) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(persons.find(item => item.id === id)), 1000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const persona = persons.find(item => item.id === id);
+      if (persona) {
+        return resolve(persona);
+      }
+
+      return reject(`Person with id: ${id} doesn't exist`);
+    }, 1000);
   });
 }
 
-fetchPersonById(2).then((person) => console.log(person));
+
+fetchPersonById(2).then((persona) => console.log(persona));
+

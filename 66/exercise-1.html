@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <div id="container">
+      <ul class="todo-list"></ul>
+    </div>
+  </body>
+</html>
+
+<script>
+  window.addEventListener("DOMContentLoaded", async () => {
+    const daFare = document.querySelector(".todo-list");
+    const rispostaServer = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const todos = await rispostaServer.json();
+    const daFareCose = todos.forEach((todo) => {
+      const daFareCosa = document.createElement("li");
+      daFareCosa.textContent = todo.title;
+      daFare.appendChild(daFareCosa);
+    });
+  });
+</script>

@@ -23,19 +23,22 @@ function fetchPersonById(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const person = persons.find(item => item.id === id);
-      
+
       if (person) {
         return resolve(JSON.stringify(person));
-      } else {
-      return reject(`L'id ${id} non ha corrispondenza`);
       }
+
+      return reject(`Person with id: ${id} doesn't exist`);
     }, 1000);
   });
 }
 
-fetchPersonById(4)
-  .then((personJson) => JSON.parse(personJson))
-  .then((person) => console.log(person))
-  .catch((err) => console.log(err));
-
-// core here
+(async () => {
+  try {
+    const personJson = await fetchPersonById(4);
+    const person = await JSON.parse(personJson);
+    console.log(person);
+  } catch (err) {
+    console.log(err);
+  }
+})();

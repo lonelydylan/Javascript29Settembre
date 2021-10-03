@@ -22,7 +22,7 @@ const persons = [
 function fetchPersonById(id) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(persons.find(id => id === id)), 1000);
-   });
+  });
   // HO provato a farlo con la destrutturazione degli oggetti ma non ci vengo a capo!
 }
 
